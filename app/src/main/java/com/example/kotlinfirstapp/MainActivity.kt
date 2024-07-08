@@ -7,6 +7,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
+    // gerekli olduğu zamanlarda bütün fonksiyonlar tarafında
+    // kullanılacak değişkenler burada tanımlanır.
+
+    //var calismaSinifi : SinifCalismasi
+    lateinit var sinifCalismasi: SinifCalismasi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -181,8 +187,50 @@ class MainActivity : AppCompatActivity() {
             println("eleman: ${numara}")
         }
 
+
         for (a in 0..9){
             println("eleman2: ${a}")
+        }
+
+        println("//////////Fonksiyonlar/////////")
+        birinciFonksiyon("birinci fonksiyon çalıştırıldı")
+
+        println(ucuncuFonkisyon("üçüncü fonksiyon çalıştırıldı"))
+
+        println("//////////Sınıflar/////////")
+        //kotlinde secondary constructor yapısı kullanımı
+        //var sinifCalismasi1=SinifCalismasi()
+        //sinifCalismasi1.meslek="Marangoz"
+        //sinifCalismasi1.isim="Ahmet"
+        //sinifCalismasi1.yas=35
+        //println(sinifCalismasi1.meslek)
+        //sınıf eğer constructor'sız yazılmış ise bu şekil bir
+        //kullanım gerçekleştirilebilir.
+
+        println("primary constructor yapısı kullanımı")
+        var sinifCalismasi2=SinifCalismasi(isim = "Ahmet", meslek = "Marangoz", yas = 30)
+        println(sinifCalismasi2.isim)
+
+        println("//////////Nullability/////////")
+        var kullaniciGirdisi="20"
+        var kullaniciGirdisi2="20"
+        var kullaniciGirdisiInt=kullaniciGirdisi.toInt()
+        var kullaniciGirdisi2Int = kullaniciGirdisi2.toIntOrNull()
+        println(kullaniciGirdisiInt*5)
+        println(kullaniciGirdisi2Int)
+
+        var benimDoble : Double? //nullable bir değer döndürebilir anlamına gelen kullanım
+        var benimDoble2 : Double?=null
+
+        //elvis operatörü
+
+        var benimInt : Int? =null
+
+        println(benimInt?:185*2)
+
+        //let metodu eğer değişken null değilse çalışan bir yapıdır.
+        benimInt?.let {
+            println("bu değişken null değil")
         }
 
 
@@ -190,5 +238,24 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
+
+
+
+    }
+
+    //yazılacak fonksiyonlar buraya yazılır.
+
+    fun birinciFonksiyon(ifade : String){
+        println(ifade)
+    }
+
+    fun ikinciFonkisyon(ifade : Int) : Int{
+        return ifade
+    }
+
+    fun ucuncuFonkisyon(ifade : String) : String{
+        return ifade
     }
 }
